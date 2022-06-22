@@ -105,10 +105,21 @@ header {
   position: relative;
   inset-block-start: 1.5rem;
   inset-inline-end: 3.5rem;
+  z-index: 100;
 }
 
 
+/* nav toggle start */
+
+.nav-check {
+  display: none;
+}
+
+
+/* nav toggle end */
+
 nav {
+  display: flex;
   align-items: center;
 }
 
@@ -248,6 +259,94 @@ ul li:hover {
   color: var(--clr-bg-dark);
   border: 2px solid var(--clr-primary0); 
   border-radius: 5px;
+}
+
+
+@media (max-width: 550px) {
+
+  header {
+    justify-content: space-between;
+    padding-inline: 2rem;
+  }
+
+  nav {
+    display: none;
+  } 
+
+  .nav-toggle {
+    display: flex;
+    align-items: center;
+  }
+
+  .nav-toggle span, 
+  .nav-toggle span::after, 
+  .nav-toggle span::before {
+    display: block;
+    inline-size: 3rem;
+    block-size: 3px;
+    background-color: var(--clr-bg-light);
+  }
+
+  .nav-toggle > span {
+    position: absolute;
+    right: 10%;
+    z-index: 100;
+  }
+
+  .nav-toggle > span::before, 
+  .nav-toggle > span::after {
+    content: "";
+    position: absolute;
+    transform-origin: 50%;
+  }
+
+  .nav-toggle span::after {
+    bottom: 7px;
+    transition: transform 300ms ease-in-out;
+  }
+
+  .nav-toggle span::before {
+    top: 7px;
+    transition: transform 300ms ease-in-out;
+  }
+
+  .nav-check:checked ~ nav {
+    display: flex;
+    position: absolute;
+    top: 0;
+    right: 0;
+    inline-size: 100%;
+    block-size: 100vh;
+    background: linear-gradient(
+          var(--clr-primary0),
+          var(--clr-primary1)
+    );
+    z-index: 99;
+  }
+
+  .nav-check:checked ~ nav ul {
+    position: absolute;
+    top: 20%;
+    right: 40%;
+    flex-flow: column nowrap;
+    gap: 3rem;
+  }
+
+  .nav-check:checked ~ .nav-toggle > span  {
+    background: transparent;
+  }
+  
+  .nav-check:checked ~ .nav-toggle > span::after {
+    transform: rotate(45deg) translateX(7px);
+  }
+
+  .nav-check:checked ~ .nav-toggle > span::before {
+    transform: rotate(-55deg) translateX(10px);
+  }
+
+  .project-title {
+    z-index: 90;
+  }
 }
 
 
