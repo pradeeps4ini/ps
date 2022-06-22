@@ -30,6 +30,7 @@ html {
 body {
   min-height: 100vh;
   font-size: 1.6rem;
+  background-color: var(--clr-bg-dark);
   letter-spacing: 1px;
 }
 
@@ -44,6 +45,12 @@ body {
   display: grid;
 }
 
+p, 
+h3, 
+span {
+  color: var(--clr-font-light);
+}
+
 ul {
   list-style: none;
 }
@@ -51,9 +58,21 @@ ul {
 a, li, button {
   text-decoration: none;
   cursor: pointer;
-  color: var(--clr-font-dark);
+  color: var(--clr-font-light);
 }
 
+img {
+  max-inline-size: 100%;
+}
+
+svg, 
+.svg-icon {
+  inline-size: 7rem;
+  aspect-ratio: 1;
+  padding: 2px;
+  background: var(--clr-primary0);
+  border-radius: 5px;
+}
 
 /* header */
 
@@ -71,7 +90,10 @@ header {
   font-weight: 500;
   padding: 1.25rem 1rem;
   border: 3px solid;
-  border-image: linear-gradient(to left, var(--clr-primary0), var(--clr-primary2)) 1;  
+  border-image: linear-gradient(to left, 
+          var(--clr-primary0), 
+          var(--clr-primary2)
+          ) 1;  
   z-index: 100;
 }
 
@@ -83,7 +105,6 @@ header {
   position: relative;
   inset-block-start: 1.5rem;
   inset-inline-end: 3.5rem;
-  color: var(--clr-font-dark);
 }
 
 
@@ -97,9 +118,11 @@ ul {
 
 ul li {
   font-weight: 900;
-  color: var(--clr-font-dark);
   letter-spacing: 1px;
-  background-image: linear-gradient(90deg, var(--clr-primary0), var(--clr-primary2));  
+  background-image: linear-gradient(90deg, 
+            var(--clr-primary0), 
+            var(--clr-primary2)
+  );  
   background-size: 0% 3px;
   background-repeat: no-repeat;
   background-position: center bottom;
@@ -113,25 +136,26 @@ ul li:hover {
 
 /* About  */
 
-main {
-  display: grid;
-  grid-template-rows: 1.5fr 1fr 1fr;
-}
-
 .about--me {
-  justify-self: center;
+  height: 100vh;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
   font-size: clamp(1.2rem, calc(1vw + .8rem), 2.4rem);
 }
 
 .my__name {
   display: inline-block;
-  background-image: linear-gradient(to right, var(--clr-primary0), var(--clr-primary2));
+  animation: background-pan 3s linear infinite;
+  background-image: linear-gradient(to right, 
+              var(--clr-primary0), 
+              var(--clr-primary2),
+              var(--clr-primary0)
+  );
   background-clip: text;
+  background-size: 200%;
   -webkit-text-fill-color: transparent;
-}
-
-h1 > span {
-  color: var(--clr-font-dark);
 }
 
 .about--me > p {
@@ -172,32 +196,62 @@ h1 > span {
 }
 
 
-/* project card */
+/* my project  */
 
 .my--projects {
-  margin-block: 10rem;
+  margin-top: 5rem;
 }
 
-.project-card {
-  inline-size: 30rem;
-  aspect-ratio: .75;
-  color: 
+.my__project0 {
+  color: var(--clr-font-dark);
   background-image: url(./images/tic-tac-toe.png);
   background-size: cover;
-  background-repeat: no-repeat;
   padding: 10rem 0 0;
-  border: 1px solid red;
+  max-width: 30ch;
+  border-radius: 1rem;
 }
 
 .project-content {
-  padding: 1.5em;
+  --padding: 1.5rem;
+  gap: 2rem;
+  padding: var(--padding);
   background: linear-gradient(
-    hsl(0 0% 100% / 0) 
-    hsl(20 0% 100% / 0.3) 20%
-    hsl(0 0% 100% / 1)    
+    hsl(0 0% 0% / 0),
+    hsl(0 0% 0% / 0.2) 90%,
+    hsl(0 0% 0% / .3)
   );
 }
-/* Animation */
+
+.project-title {
+  position: relative;
+  max-width: max-content;
+  border: 1px solid red;
+}
+
+.project-title::after {
+  content: "";
+  position: absolute;
+  left: calc(var(--padding) * -1);
+  bottom: 0;
+  inline-size: calc(100% + var(--padding));
+  block-size: .3rem;
+  background: linear-gradient(90deg, var(--clr-primary0), var(--clr-primary2));
+}
+
+.links {
+  gap: 2rem;
+}
+
+.links a {
+  display: inline-block;
+  padding: .75rem 1.5rem;
+  color: var(--clr-bg-dark);
+  border: 2px solid var(--clr-primary0); 
+  border-radius: 5px;
+}
+
+
+/* animation */
 
 @keyframes Rotate {
   from {
@@ -205,5 +259,14 @@ h1 > span {
   }
   to {
     transform: rotate(360deg);
+  }
+}
+
+@keyframes background-pan {
+  from {
+    background-position: 0% center;
+  }
+  to {
+    background-position: -200% center;
   }
 }
