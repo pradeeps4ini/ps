@@ -1,0 +1,209 @@
+:root {
+  
+  --f-size: 62.5%;
+  
+  --clr-primary0: hsl(152, 100%, 43.7%);
+  --clr-primary1: hsl(0, 0%, 43.1%);
+  --clr-primary2: hsl(61.9, 100%, 43.7%);
+
+  --clr-bg-dark: hsl(0, 0%, 0%);
+  --clr-bg-light: hsl(0, 0%, 100%);
+
+  --clr-font-dark: hsl(0, 0%, 0%);
+  --clr-font-light: hsl(0, 0%, 100%);
+}
+
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+
+html {
+  font-size: var(--f-size);
+}
+
+body {
+  min-height: 100vh;
+  font-size: 1.6rem;
+  letter-spacing: 1px;
+}
+
+
+/* utility classes */
+
+.flex {
+  display: flex;
+}
+
+.grid {
+  display: grid;
+}
+
+ul {
+  list-style: none;
+}
+
+a, li, button {
+  text-decoration: none;
+  cursor: pointer;
+  color: var(--clr-font-dark);
+}
+
+
+/* header */
+
+header {
+  position: fixed;;
+  inline-size: 100%;
+  justify-content: space-around;
+  padding-block: 3rem;
+}
+
+.box__rotates {
+  inline-size: 5rem;
+  block-size: 5rem;
+  font-size: 2rem;
+  font-weight: 500;
+  padding: 1.25rem 1rem;
+  border: 3px solid;
+  border-image: linear-gradient(to left, var(--clr-primary0), var(--clr-primary2)) 1;  
+  z-index: 100;
+}
+
+.box__rotates:hover {
+  animation: Rotate 2s .5 linear;
+}
+
+.name__symbol {
+  position: relative;
+  inset-block-start: 1.5rem;
+  inset-inline-end: 3.5rem;
+  color: var(--clr-font-dark);
+}
+
+
+nav {
+  align-items: center;
+}
+
+ul {
+  gap: 4rem;
+}
+
+ul li {
+  font-weight: 900;
+  color: var(--clr-font-dark);
+  letter-spacing: 1px;
+  background-image: linear-gradient(90deg, var(--clr-primary0), var(--clr-primary2));  
+  background-size: 0% 3px;
+  background-repeat: no-repeat;
+  background-position: center bottom;
+  transition: background-size 350ms ease-in-out;
+}
+
+ul li:hover {
+  background-size: 100% 2px;
+}
+
+
+/* About  */
+
+main {
+  display: grid;
+  grid-template-rows: 1.5fr 1fr 1fr;
+}
+
+.about--me {
+  justify-self: center;
+  font-size: clamp(1.2rem, calc(1vw + .8rem), 2.4rem);
+}
+
+.my__name {
+  display: inline-block;
+  background-image: linear-gradient(to right, var(--clr-primary0), var(--clr-primary2));
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+h1 > span {
+  color: var(--clr-font-dark);
+}
+
+.about--me > p {
+  margin-block-start: 1rem;
+  font-weight: 500;
+  letter-spacing: .75px;
+}
+
+
+/* skills */
+
+.my--skills {
+  grid-template: 1fr 1fr / 1.25fr 2fr 1.25fr;
+  gap: 5rem;
+}
+
+.my__skill {
+  grid-area: 1 / 2 / 2 / 3;
+}
+
+:is(.my__skill, .my__tool) {
+  gap: 2rem;
+}
+
+:is(.my__skill, .my__tool) > div {
+  gap: 5rem;
+}
+
+:is(.my__skill, .my__tool) > div div {
+  display: grid;
+  gap: 2rem;
+  font-size: 1.4rem;
+  text-align: center;
+}
+
+.my__tool {
+  grid-area: 2 / 2 / 3 / 3; 
+}
+
+
+/* project card */
+
+.my--projects {
+  margin-block: 10rem;
+}
+
+.project-card {
+  inline-size: 30rem;
+  aspect-ratio: .75;
+  color: 
+  background-image: url(./images/tic-tac-toe.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding: 10rem 0 0;
+  border: 1px solid red;
+}
+
+.project-content {
+  padding: 1.5em;
+  background: linear-gradient(
+    hsl(0 0% 100% / 0) 
+    hsl(20 0% 100% / 0.3) 20%
+    hsl(0 0% 100% / 1)    
+  );
+}
+/* Animation */
+
+@keyframes Rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
